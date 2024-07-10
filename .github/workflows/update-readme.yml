@@ -13,39 +13,33 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'  # Ruby 버전 설정
+          ruby-version: '3.1.0'  # 최신 안정 버전으로 설정
 
-      - name: Install Bundler and Linguist
+      - name: Install Bundler
+        run: gem install bundler
+
+      - name: Create Gemfile for Linguist
         run: |
-          gem install bundler
-          git clone https://github.com/github/linguist.git
-          cd linguist
+          echo "source 'https://rubygems.org'" > Gemfile
+          echo "gem 'github-linguist', '~> 7.11.0'" >> Gemfile
           bundle install
-          cd ..
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.x'  # Python 버전 설정
 
-      - name: Install dependencies
+      - name: Install Pygithub
         run: |
           python -m pip install --upgrade pip
           pip install pygithub
 
-      - name: Apply .gitattributes
+      - name: Apply .gitattributes and Run Linguist
         run: |
-          git clone https://github.com/github/linguist.git
           cp .gitattributes linguist/
-          cd linguist
-          bundle install
-          bundle exec rake install
-
-      - name: Calculate languages
-        run: |
-          linguist --json > languages.json
+          bundle exec linguist --json > languages.json
 
       - name: Update README.md
         run: |
