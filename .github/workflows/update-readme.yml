@@ -23,6 +23,7 @@ jobs:
           echo "source 'https://rubygems.org'" > Gemfile
           echo "gem 'github-linguist', '~> 7.11.0'" >> Gemfile
           bundle install
+          bundle exec linguist --version  # linguist가 올바르게 설치되었는지 확인
 
       - name: Set up Python
         uses: actions/setup-python@v2
