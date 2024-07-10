@@ -23,6 +23,8 @@ jobs:
           echo "source 'https://rubygems.org'" > Gemfile
           echo "gem 'github-linguist', '~> 7.11.0'" >> Gemfile
           bundle install
+          # Add the bin directory of the installed gems to the PATH
+          echo "::add-path::$(ruby -e 'puts Gem.user_dir')/bin"
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -37,7 +39,7 @@ jobs:
       - name: Apply .gitattributes and Run Linguist
         run: |
           cat .gitattributes
-          bundle exec linguist --json > languages.json
+          linguist --json > languages.json
 
       - name: Update README.md
         run: |
