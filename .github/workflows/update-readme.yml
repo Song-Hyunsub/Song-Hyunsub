@@ -17,11 +17,9 @@ jobs:
         with:
           ruby-version: '3.1.0'  # 최신 안정 버전으로 설정
 
-      - name: Install Bundler
-        run: gem install bundler
-
-      - name: Create Gemfile for Linguist
+      - name: Install Bundler and Linguist
         run: |
+          gem install bundler
           echo "source 'https://rubygems.org'" > Gemfile
           echo "gem 'github-linguist', '~> 7.11.0'" >> Gemfile
           bundle install
@@ -38,7 +36,7 @@ jobs:
 
       - name: Apply .gitattributes and Run Linguist
         run: |
-          cp .gitattributes linguist/
+          cat .gitattributes
           bundle exec linguist --json > languages.json
 
       - name: Update README.md
