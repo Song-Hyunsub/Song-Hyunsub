@@ -22,9 +22,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install pygithub
 
-      - name: Calculate languages
+      - name: Apply .gitattributes
         run: |
           git clone https://github.com/github/linguist.git
+          cp .gitattributes linguist/
+          cd linguist
+          bundle install
+          bundle exec rake install
+
+      - name: Calculate languages
+        run: |
           linguist --json > languages.json
 
       - name: Update README.md
