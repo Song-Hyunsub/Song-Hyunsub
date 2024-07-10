@@ -1,2 +1,2 @@
-*.ipynb linguist-vendored
-*.cpp linguist-vendored=false
+*.ipynb linguist-detectable=false
+*.sql linguist-detectable=true
