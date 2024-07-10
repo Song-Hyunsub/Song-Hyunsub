@@ -12,6 +12,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.7'  # Ruby 버전 설정
+
+      - name: Install Bundler and Linguist
+        run: |
+          gem install bundler
+          git clone https://github.com/github/linguist.git
+          cd linguist
+          bundle install
+          cd ..
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
