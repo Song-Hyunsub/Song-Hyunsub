@@ -20,3 +20,4 @@ Here are some ideas to get you started:
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Song-Hyunsub)](https://github.com/anuraghazra/github-readme-stats)
 
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=shs2101)](https://solved.ac/shs2101/)
+[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=kwpython)](https://solved.ac/shs2101/)
